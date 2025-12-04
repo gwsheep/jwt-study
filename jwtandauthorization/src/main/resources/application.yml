@@ -1,0 +1,14 @@
+server:
+  port: 9000
+spring:
+  security:
+    oauth2:
+      authorizationserver:
+        issuer: http://localhost:9000
+  # test?
+  jwt:
+    keystore:
+      location: classpath:jwt-jstudy.jks
+      password: changeit
+      key-alias: jwt-jstudy
+      key-password: changeit
