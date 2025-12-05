@@ -1,2 +1,12 @@
 server:
   port: 9100
+
+# local test용 - 테스트 용 외에는 활용 X
+# public key를 통신 통해 가져갈 수도 있으나, 따로 추출해서 설정에 넣고 검증 연습 -> 이후 통신을 통해 가져가는 거 연습
+jwt:
+  publicKey:
+
+
+
+
+

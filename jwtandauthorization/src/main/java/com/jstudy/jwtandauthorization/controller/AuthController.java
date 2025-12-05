@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -19,8 +21,8 @@ public class AuthController {
     //JWT 발급 Controller
     @PostMapping("/issue/jwt")
     public ResponseEntity<?> issueJwt(@RequestBody RequestVO req) {
-        authService.createAccessToken(req);
-        return ResponseEntity.ok("test");
+        Map<String, Object> accessToken = authService.createAccessToken(req);
+        return ResponseEntity.ok(accessToken);
     }
 
 }

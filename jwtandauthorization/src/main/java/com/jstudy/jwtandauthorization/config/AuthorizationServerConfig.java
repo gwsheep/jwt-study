@@ -18,6 +18,7 @@ import java.security.cert.Certificate;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 
+//Jwt 발급 설정
 @Configuration
 public class AuthorizationServerConfig {
 
@@ -33,14 +34,14 @@ public class AuthorizationServerConfig {
     @Value("${spring.jwt.keystore.key-password}")
     private String keyPassword;
 
-    //1) KeyStore(ex: .jks, .pem ..) or KeyPair
+    //1) KeyStore(ex: .jks, .pem ..)
     private KeyStore getKeyStore() throws Exception {
         KeyStore keyStore = KeyStore.getInstance("JKS");
         keyStore.load(keystoreLocation.getInputStream(), keystorePassword.toCharArray());
         return keyStore;
     }
 
-    //2) RSA Key
+    //2) RSA Key and Key Pair
     private RSAKey getRSAKey() throws Exception {
         KeyStore keyStore = getKeyStore();
         Key key = keyStore.getKey(keyAlias, keyPassword.toCharArray());
@@ -53,7 +54,7 @@ public class AuthorizationServerConfig {
                     .build();
     }
 
-    //3) JwkStore
+    //3) JwkStore (JSON WEB KEY)
     @Bean
     public JWKSource<SecurityContext> jwkSource() throws Exception {
         RSAKey rsaKey = getRSAKey();
@@ -61,7 +62,7 @@ public class AuthorizationServerConfig {
         return  ((jwkSelector, securityContext) -> jwkSelector.select(jwkSet));
     }
 
-    //+ 4) JwtEncoder
+    //+ 4) JwtEncoder (JSON WEB TOKEN)
     @Bean
     public JwtEncoder jwtEncoder(JWKSource<SecurityContext> jwkSource) {
         return new NimbusJwtEncoder(jwkSource);

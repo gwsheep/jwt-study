@@ -1,4 +1,4 @@
-package com.jstudy.jwtandauthorization.config;
+package com.jstudy.jwtandresource.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,7 +8,6 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-
 public class SecurityConfig {
 
     @Bean
@@ -17,16 +16,16 @@ public class SecurityConfig {
         http
             .csrf(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests(
-                    auth -> auth.requestMatchers("/auth/issue/jwt").permitAll()
+                    auth -> auth.requestMatchers(("/verify")).permitAll()
                             .anyRequest().authenticated())
+
+            //oauth2 설정?
+
             .httpBasic(Customizer.withDefaults());
 
         return http.build();
 
     }
-
-
-
 
 
 
