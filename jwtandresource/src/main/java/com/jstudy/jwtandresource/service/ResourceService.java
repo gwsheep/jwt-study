@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class ResourceService {
 
-
-
-
+    public String parseName(String name) {
+        return name + " is changed";
+    }
 
 }
