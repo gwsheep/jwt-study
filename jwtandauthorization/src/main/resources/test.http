@@ -1,0 +1,21 @@
+### Jwt 생성 API
+POST http://localhost:9000/auth/jwt/issue
+Content-Type: application/json
+
+{
+    "id":"test",
+    "secretInfo":"secretTime"
+}
+
+### Jwt Refresh API
+POST http://localhost:9000/auth/jwt/refresh
+Content-Type: application/json
+
+{
+  "access_token": "",
+  "refresh_token": "",
+  "token_type": "Bearer",
+  "expiry_date": ""
+}
+
+

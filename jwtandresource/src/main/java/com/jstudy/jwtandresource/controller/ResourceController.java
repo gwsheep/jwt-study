@@ -18,6 +18,9 @@ public class ResourceController {
 
     @GetMapping("/resource")
     public ResponseEntity<?> resourceTest(@RequestParam("name") @NonNull String name) {
+        /**
+         * public key이 아닌 issuer-uri 활용한 jwt 검증 방법 연습해보기
+         */
         String parsedName = resourceService.parseName(name);
         return ResponseEntity.ok(parsedName);
     }

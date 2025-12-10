@@ -1,0 +1,3 @@
+### Jwt 검증 API
+GET http://localhost:9100/resource?name=hello
+Authorization: Bearer
